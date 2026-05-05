@@ -94,19 +94,19 @@ export const narrativesAr: Record<string, PersonaNarrative> = {
 
 export const metrics: Record<string, MetricCardData[]> = {
   legal: [
-    { label: 'Total contracts',      value: '10',          sub: '3 vendor · 2 employment · 2 financial', variant: 'default' },
+    { label: 'Total contracts',      value: '25',          sub: '8 vendor · 4 employment · 3 legal', variant: 'default' },
     { label: 'Critical risk',        value: '2',           sub: 'NexusCloud · Al-Mizan',                  variant: 'critical' },
     { label: 'Open contradictions',  value: '5',           sub: '2 critical · 2 high · 1 medium',        variant: 'warning' },
     { label: 'Liability uncapped',   value: '2',           sub: 'Al-Mizan · Al-Nakheel (property)',       variant: 'critical' },
   ],
   procurement: [
-    { label: 'Renewing this quarter', value: '3',          sub: 'CloudCRM · BrandWave · TechSolutions',   variant: 'warning' },
-    { label: 'Urgent (<60d)',         value: '2',          sub: 'BrandWave 30d · CloudCRM 47d',           variant: 'critical' },
+    { label: 'Renewing this quarter', value: '8',          sub: 'Inc. construction, JV, catering, logistics', variant: 'warning' },
+    { label: 'Urgent (<60d)',         value: '10',         sub: 'Al-Mashura 14d · Construction 18d · Transport 22d', variant: 'critical' },
     { label: 'Break clause decision', value: '1 day',      sub: 'Office Lease — Act now',                 variant: 'critical' },
     { label: 'Total Q3 renewals',     value: 'SAR 892K',   sub: 'Across 3 renewing contracts',            variant: 'default' },
   ],
   cfo: [
-    { label: 'Total annual obligations', value: 'SAR 8.4M', sub: '10 active contracts',                   variant: 'default' },
+    { label: 'Total annual obligations', value: 'SAR 26M+', sub: '25 active contracts',                   variant: 'default' },
     { label: 'Largest commitment',       value: 'SAR 3.6M', sub: 'Office Lease (43% of portfolio)',        variant: 'warning' },
     { label: 'Phantom equity exposure',  value: 'SAR 18.75M', sub: 'VP Finance — unfunded',               variant: 'critical' },
     { label: 'Uncapped contracts',       value: '2',          sub: 'Al-Mizan · Al-Nakheel property',      variant: 'critical' },
@@ -115,19 +115,19 @@ export const metrics: Record<string, MetricCardData[]> = {
 
 export const metricsAr: Record<string, MetricCardData[]> = {
   legal: [
-    { label: 'إجمالي العقود',        value: '10',          sub: '3 موردون · 2 عمالة · 2 مالية',          variant: 'default' },
+    { label: 'إجمالي العقود',        value: '25',          sub: '8 موردون · 4 عمالة · 3 قانونية',         variant: 'default' },
     { label: 'مخاطر حرجة',           value: '2',           sub: 'NexusCloud · الميزان',                   variant: 'critical' },
     { label: 'تعارضات مفتوحة',       value: '5',           sub: '2 حرجة · 2 عالية · 1 متوسطة',           variant: 'warning' },
     { label: 'مسؤولية غير محددة',    value: '2',           sub: 'الميزان · النخيل (العقارات)',            variant: 'critical' },
   ],
   procurement: [
-    { label: 'تتجدد هذا الربع',       value: '3',           sub: 'CloudCRM · BrandWave · TechSolutions',   variant: 'warning' },
-    { label: 'عاجل (<60 يوم)',        value: '2',           sub: 'BrandWave 30ي · CloudCRM 47ي',           variant: 'critical' },
+    { label: 'تتجدد هذا الربع',       value: '8',           sub: 'إنشاءات، JV، تموين، لوجستيات وأخرى',   variant: 'warning' },
+    { label: 'عاجل (<60 يوم)',        value: '10',          sub: 'المشورة 14ي · الإنشاء 18ي · الخليج 22ي', variant: 'critical' },
     { label: 'قرار شرط الإنهاء',     value: 'يوم واحد',    sub: 'إيجار المكتب — تصرف الآن',              variant: 'critical' },
     { label: 'إجمالي تجديدات ق3',    value: 'SAR 892K',    sub: 'عبر 3 عقود متجددة',                     variant: 'default' },
   ],
   cfo: [
-    { label: 'إجمالي الالتزامات السنوية', value: 'SAR 8.4M',   sub: '10 عقود نشطة',                    variant: 'default' },
+    { label: 'إجمالي الالتزامات السنوية', value: 'SAR 26M+',  sub: '25 عقداً نشطاً',                  variant: 'default' },
     { label: 'أكبر التزام',               value: 'SAR 3.6M',   sub: 'إيجار المكتب (43% من المحفظة)',   variant: 'warning' },
     { label: 'تعرض الأسهم الوهمية',       value: 'SAR 18.75M', sub: 'نائب الرئيس المالي — غير ممول', variant: 'critical' },
     { label: 'عقود غير محددة الحد',       value: '2',          sub: 'الميزان · النخيل العقارية',       variant: 'critical' },
@@ -148,11 +148,16 @@ export const financialExposure = [
 // ─── Renewal pipeline ─────────────────────────────────────────────────────────
 
 export const renewalPipeline = [
-  { name: 'BrandWave',            nameAr: 'BrandWave',                days: 30,  notice: 30,  value: 'SAR 504K',  contractId: 'c9', pct: 100 },
-  { name: 'CloudCRM',             nameAr: 'CloudCRM',                 days: 47,  notice: 90,  value: 'USD 198K',  contractId: 'c3', pct: 90  },
-  { name: 'Office Lease (break)', nameAr: 'إيجار المكتب (إنهاء)',     days: 119, notice: 120, value: 'SAR 3.6M',  contractId: 'c8', pct: 40  },
-  { name: 'TechSolutions',        nameAr: 'TechSolutions',            days: 165, notice: 90,  value: 'SAR 582K',  contractId: 'c1', pct: 22  },
-  { name: 'Al-Mizan',             nameAr: 'الميزان',                  days: 192, notice: 60,  value: 'SAR 420K',  contractId: 'c7', pct: 14  },
+  { name: 'Al-Mashura Consulting (sign)', nameAr: 'المشورة للاستشارات (توقيع)', days: 14,  notice: 90,  value: 'SAR 960K',  contractId: 'c20', pct: 100 },
+  { name: 'Construction Milestone 3',     nameAr: 'الإعمار — الدفعة الثالثة',  days: 18,  notice: 90,  value: 'SAR 2.1M',  contractId: 'c14', pct: 98  },
+  { name: 'Gulf Transport (dispute)',      nameAr: 'الخليج للنقل (نزاع)',        days: 22,  notice: 45,  value: 'SAR 756K',  contractId: 'c13', pct: 96  },
+  { name: 'Al-Sharq JV (sign)',           nameAr: 'الشرق اللوجستي (JV)',        days: 28,  notice: 180, value: 'SAR 3.2M',  contractId: 'c24', pct: 92  },
+  { name: 'BrandWave',                    nameAr: 'BrandWave',                  days: 30,  notice: 30,  value: 'SAR 504K',  contractId: 'c9',  pct: 90  },
+  { name: 'Zad Catering',                 nameAr: 'زاد للتموين',                days: 33,  notice: 30,  value: 'SAR 540K',  contractId: 'c16', pct: 86  },
+  { name: 'Warehouse (break clause)',      nameAr: 'المستودع (شرط الإنهاء)',    days: 38,  notice: 120, value: 'SAR 1.44M', contractId: 'c22', pct: 82  },
+  { name: 'Riyadh Maintenance',           nameAr: 'الرياض للصيانة',            days: 45,  notice: 60,  value: 'SAR 420K',  contractId: 'c11', pct: 76  },
+  { name: 'CloudCRM',                     nameAr: 'CloudCRM',                   days: 47,  notice: 90,  value: 'USD 198K',  contractId: 'c3',  pct: 74  },
+  { name: 'Al-Maliki Probation',          nameAr: 'المالكي — نهاية التجربة',   days: 55,  notice: 60,  value: 'SAR 528K',  contractId: 'c17', pct: 68  },
 ];
 
 // ─── Contradictions ───────────────────────────────────────────────────────────

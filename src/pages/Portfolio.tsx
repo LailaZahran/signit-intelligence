@@ -625,7 +625,7 @@ export default function Portfolio() {
 
   const zone3LeftTitle = ar ? 'جدول التجديدات' : 'Renewal pipeline';
   const zone3LeftTag = {
-    label: ar ? 'عاجلان' : '2 urgent',
+    label: ar ? '5 عاجلة' : '5 urgent',
     style: { background: '#FEF2F2', color: '#B91C1C' },
   };
 
@@ -652,7 +652,7 @@ export default function Portfolio() {
                 {ar ? 'ذكاء المحفظة' : 'Portfolio Intelligence'}
               </h1>
               <p className="text-[11px] text-gray-400 mt-0.5">
-                {ar ? 'تحليل متقاطع لعقود المدار القابضة · 10 عقود' : 'Cross-contract analysis · Al-Madar Holding · 10 contracts'}
+                {ar ? 'تحليل متقاطع لعقود المدار القابضة · 25 عقداً' : 'Cross-contract analysis · Al-Madar Holding · 25 contracts'}
               </p>
               <div className="flex items-center gap-2 mt-1.5">
                 <Clock size={10} className="text-gray-400" />
