@@ -447,7 +447,7 @@ function ContradictionList() {
           {ar ? 'التعارضات المكتشفة' : 'Cross-contract contradictions'}
         </p>
         <p className="text-[10px] text-gray-400">
-          {ar ? '5 تعارضات تتطلب مراجعة' : '5 identified — requires review'}
+          {ar ? '8 تعارضات تتطلب مراجعة' : '8 identified — requires review'}
         </p>
       </div>
       <div className="flex flex-col gap-2">
