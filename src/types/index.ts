@@ -65,7 +65,9 @@ export interface ContractSection {
 export interface Contract {
   id: string;
   title: string;
+  titleAr?: string;
   counterparty: string;
+  counterpartyAr?: string;
   type: ContractType;
   contractNumber: string;
   status: ContractStatus;

@@ -5,7 +5,9 @@ export const contracts: Contract[] = [
   {
     id: 'c1',
     title: 'IT Services Vendor Agreement',
+    titleAr: 'اتفاقية خدمات تقنية المعلومات',
     counterparty: 'TechSolutions Arabia Ltd.',
+    counterpartyAr: 'تك سولوشنز العربية',
     type: 'vendor',
     contractNumber: 'VSA-2024-0047',
     status: 'active',
@@ -65,7 +67,9 @@ export const contracts: Contract[] = [
   {
     id: 'c2',
     title: 'Mutual Non-Disclosure Agreement',
+    titleAr: 'اتفاقية عدم الإفصاح المتبادلة',
     counterparty: 'Al-Noor Strategic Consulting LLC',
+    counterpartyAr: 'النور للاستشارات الاستراتيجية',
     type: 'nda',
     contractNumber: 'NDA-2024-0112',
     status: 'active',
@@ -116,7 +120,9 @@ export const contracts: Contract[] = [
   {
     id: 'c3',
     title: 'Software Subscription Agreement',
+    titleAr: 'اتفاقية اشتراك البرمجيات',
     counterparty: 'CloudCRM International Inc.',
+    counterpartyAr: 'كلاود سي آر إم إنترناشيونال',
     type: 'saas',
     contractNumber: 'SSA-2023-0389',
     status: 'expiring',
@@ -176,7 +182,9 @@ export const contracts: Contract[] = [
   {
     id: 'c4',
     title: 'Employment Contract — Senior Director, Operations',
+    titleAr: 'عقد توظيف — المدير الأول للعمليات',
     counterparty: 'Khaled Ibrahim Al-Rashidi',
+    counterpartyAr: 'خالد إبراهيم الرشيدي',
     type: 'employment',
     contractNumber: 'HR-EC-2024-0078',
     status: 'active',
@@ -230,7 +238,9 @@ export const contracts: Contract[] = [
   {
     id: 'c5',
     title: 'Joint Venture & Partnership Agreement',
+    titleAr: 'اتفاقية مشروع مشترك وشراكة',
     counterparty: 'Gulf Express Freight Ltd.',
+    counterpartyAr: 'الخليج إكسبريس للشحن',
     type: 'jv',
     contractNumber: 'JVA-2024-0005',
     status: 'active',
@@ -282,7 +292,9 @@ export const contracts: Contract[] = [
   {
     id: 'c6',
     title: 'Cloud Infrastructure Services Agreement',
+    titleAr: 'اتفاقية خدمات البنية التحتية السحابية',
     counterparty: 'NexusCloud Technologies Inc.',
+    counterpartyAr: 'نيكسس كلاود تكنولوجيز',
     type: 'cloud',
     contractNumber: 'CISA-2024-0201',
     status: 'flagged',
@@ -335,7 +347,9 @@ export const contracts: Contract[] = [
   {
     id: 'c7',
     title: 'Legal Services Retainer Agreement',
+    titleAr: 'اتفاقية استئناف الخدمات القانونية',
     counterparty: 'Al-Mizan Law Firm',
+    counterpartyAr: 'مكتب الميزان للمحاماة',
     type: 'legal',
     contractNumber: 'LSR-2024-0033',
     status: 'flagged',
@@ -397,7 +411,9 @@ export const contracts: Contract[] = [
   {
     id: 'c8',
     title: 'Commercial Office Lease Agreement',
+    titleAr: 'عقد إيجار مكتب تجاري',
     counterparty: 'Al-Nakheel Real Estate Development Co.',
+    counterpartyAr: 'النخيل للتطوير العقاري',
     type: 'lease',
     contractNumber: 'OLA-2023-0019',
     status: 'active',
@@ -454,7 +470,9 @@ export const contracts: Contract[] = [
   {
     id: 'c9',
     title: 'Marketing Services Agreement',
+    titleAr: 'اتفاقية خدمات التسويق',
     counterparty: 'BrandWave Creative Agency W.L.L.',
+    counterpartyAr: 'براند ويف للإبداع',
     type: 'marketing',
     contractNumber: 'MSA-2024-0155',
     status: 'active',
@@ -515,7 +533,9 @@ export const contracts: Contract[] = [
   {
     id: 'c10',
     title: 'Employment Contract — VP Finance & Strategy',
+    titleAr: 'عقد توظيف — نائب الرئيس للشؤون المالية والاستراتيجية',
     counterparty: 'Sara Abdulaziz Al-Otaibi',
+    counterpartyAr: 'سارة عبدالعزيز العتيبي',
     type: 'employment',
     contractNumber: 'HR-EC-2024-0091',
     status: 'active',

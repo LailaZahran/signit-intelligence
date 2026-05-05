@@ -114,7 +114,9 @@ export default function ContractList() {
       list = list.filter(
         (c) =>
           c.counterparty.toLowerCase().includes(q) ||
+          (c.counterpartyAr ?? '').includes(query.trim()) ||
           c.title.toLowerCase().includes(q) ||
+          (c.titleAr ?? '').includes(query.trim()) ||
           c.contractNumber.toLowerCase().includes(q) ||
           c.type.toLowerCase().includes(q)
       );
