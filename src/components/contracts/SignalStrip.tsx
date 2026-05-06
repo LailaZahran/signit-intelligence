@@ -1,5 +1,6 @@
 import { Signal } from '@/types';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface SignalStripProps {
   signals: Signal[];
@@ -14,6 +15,7 @@ const COLOR_MAP = {
 
 export function SignalStrip({ signals, size = 'sm' }: SignalStripProps) {
   const dotSize = size === 'sm' ? 'h-2 w-2' : 'h-2.5 w-2.5';
+  const { ar } = useLanguage();
   return (
     <div className="flex items-center gap-1.5" data-testid="signal-strip">
       {signals.map((sig, i) => (
@@ -28,7 +30,7 @@ export function SignalStrip({ signals, size = 'sm' }: SignalStripProps) {
             side="top"
             className="max-w-xs text-xs font-medium"
           >
-            {sig.label}
+            {ar && sig.labelAr ? sig.labelAr : sig.label}
           </TooltipContent>
         </Tooltip>
       ))}

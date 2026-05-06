@@ -111,6 +111,19 @@ const CRITICAL_DATE_LABEL_AR: Record<string, string> = {
   'Annual renewal decision':                            'قرار التجديد السنوي',
   'Break clause notice deadline':                       'موعد إشعار شرط الإنهاء',
   'Annual KPI review and bonus determination':          'مراجعة KPI السنوية وتحديد المكافأة',
+  'Renewal notice deadline':                            'الموعد النهائي لإشعار التجديد',
+  'Policy renewal':                                     'تجديد الوثيقة',
+  'Dispute resolution deadline':                        'الموعد النهائي لتسوية النزاع',
+  'Milestone 3 payment trigger':                        'شرط سداد الدفعة الثالثة',
+  'Contract expiry':                                    'انتهاء العقد',
+  'Probation completion — confirmation required':       'انتهاء فترة التجربة — مطلوب تأكيد',
+  'Annual performance review':                          'مراجعة الأداء السنوية',
+  'Contract renewal':                                   'تجديد العقد',
+  'Contract signing deadline':                          'الموعد النهائي لتوقيع العقد',
+  'Break clause exercise deadline':                     'الموعد النهائي لاستخدام شرط الإنهاء',
+  'NDA expiry':                                         'انتهاء اتفاقية السرية',
+  'JV agreement signing deadline':                      'الموعد النهائي لتوقيع اتفاقية المشروع المشترك',
+  'Retainer renewal review':                            'مراجعة تجديد الاستئناف',
 };
 
 // ─── Confidence bar ────────────────────────────────────────────────────────
@@ -134,7 +147,7 @@ function StorySection({
   onToggle,
   isPulsed,
 }: {
-  section: { id: string; title: string; content: string; confidence: number; sourceClause: string };
+  section: { id: string; title: string; content: string; confidence: number; sourceClause: string; titleAr?: string; contentAr?: string };
   onViewSource: (id: string) => void;
   isOpen: boolean;
   onToggle: (id: string) => void;
@@ -161,7 +174,7 @@ function StorySection({
         onClick={() => onToggle(section.id)}
       >
         <div className="flex-1 min-w-0 flex items-center gap-2">
-          <span className="text-[12px] font-semibold text-[var(--brand-navy)] truncate" dir="ltr">{section.title}</span>
+          <span className="text-[12px] font-semibold text-[var(--brand-navy)] truncate" dir={ar && section.titleAr ? 'rtl' : 'ltr'}>{ar && section.titleAr ? section.titleAr : section.title}</span>
           {isLow && (
             <span className="flex-shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-50 text-red-600">
               {ar ? 'ثقة منخفضة' : 'Low confidence'}
@@ -191,7 +204,7 @@ function StorySection({
               </p>
             </div>
           )}
-          <p className="text-[12px] leading-relaxed text-gray-700 mb-3 mt-3" dir="ltr">{section.content}</p>
+          <p className="text-[12px] leading-relaxed text-gray-700 mb-3 mt-3" dir={ar && section.contentAr ? 'rtl' : 'ltr'}>{ar && section.contentAr ? section.contentAr : section.content}</p>
           <div className="flex items-center justify-between">
             <div className="flex gap-3">
               <button className="text-[10px] text-gray-400 hover:text-gray-600 transition-colors">
@@ -634,9 +647,10 @@ export default function ContractDetail() {
                 <p className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: lensColor }}>
                   {t('AI Summary', 'الملخص الذكي')}
                 </p>
-                <div className="rounded-xl px-4 py-3 text-[12px] leading-relaxed text-[var(--brand-navy)]" dir="ltr"
+                <div className="rounded-xl px-4 py-3 text-[12px] leading-relaxed text-[var(--brand-navy)]"
+                  dir={ar && contract.aiSummaryAr ? 'rtl' : 'ltr'}
                   style={{ borderLeft: `3px solid ${lensColor}`, background: '#F8F9FA' }}>
-                  {contract.aiSummary[lens]}
+                  {ar && contract.aiSummaryAr ? contract.aiSummaryAr[lens] : contract.aiSummary[lens]}
                 </div>
               </div>
 
@@ -651,11 +665,15 @@ export default function ContractDetail() {
                       const fs = FLAG_STYLE[flag.severity] ?? FLAG_STYLE.medium;
                       return (
                         <div key={i} className="rounded-xl px-3 py-2.5" style={{ background: fs.bg, border: `1px solid ${fs.border}` }}>
-                          <div className="flex items-start gap-2" dir="ltr">
+                          <div className="flex items-start gap-2" dir={ar && flag.titleAr ? 'rtl' : 'ltr'}>
                             {SEVERITY_ICON[flag.severity]}
                             <div>
-                              <p className="text-[12px] font-semibold leading-tight" style={{ color: fs.titleColor }}>{flag.title}</p>
-                              <p className="text-[11px] leading-relaxed mt-0.5" style={{ color: fs.descColor }}>{flag.description}</p>
+                              <p className="text-[12px] font-semibold leading-tight" style={{ color: fs.titleColor }}>
+                                {ar && flag.titleAr ? flag.titleAr : flag.title}
+                              </p>
+                              <p className="text-[11px] leading-relaxed mt-0.5" style={{ color: fs.descColor }}>
+                                {ar && flag.descriptionAr ? flag.descriptionAr : flag.description}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -686,10 +704,10 @@ export default function ContractDetail() {
                         }}
                       >
                         <p className="text-[10px] text-gray-400 mb-1">
-                          {ar ? (FIELD_LABEL_AR[f.label] ?? f.label) : f.label}
+                          {ar ? (f.labelAr ?? FIELD_LABEL_AR[f.label] ?? f.label) : f.label}
                         </p>
                         <p className="text-[13px] font-semibold leading-tight" style={{ color: valColor }} dir="ltr">
-                          {f.value}
+                          {ar && f.valueAr ? f.valueAr : f.value}
                         </p>
                         <div className="mt-1.5">
                           <ConfBar value={f.confidence} />
@@ -707,10 +725,10 @@ export default function ContractDetail() {
                     {t('Possible terms to negotiate', 'نقاط التفاوض')}
                   </p>
                   <div className="flex flex-col gap-1.5">
-                    {contract.negotiationAngles.map((angle, i) => (
+                    {(ar && contract.negotiationAnglesAr ? contract.negotiationAnglesAr : contract.negotiationAngles).map((angle, i) => (
                       <div key={i} className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[var(--brand-indigo-pale)]">
                         <CheckCircle size={12} className="flex-shrink-0 mt-0.5" style={{ color: 'var(--brand-indigo)' }} />
-                        <p className="text-[12px] text-[var(--brand-navy)] leading-relaxed" dir="ltr">{angle}</p>
+                        <p className="text-[12px] text-[var(--brand-navy)] leading-relaxed" dir={ar && contract.negotiationAnglesAr ? 'rtl' : 'ltr'}>{angle}</p>
                       </div>
                     ))}
                   </div>
@@ -814,7 +832,7 @@ export default function ContractDetail() {
                 </div>
                 {lowConfFields.length > 0 && (
                   <p className="text-[9px] text-amber-600 mt-1.5">
-                    ⚠ {lowConfFields.map(f => ar ? (FIELD_LABEL_AR[f.label] ?? f.label) : f.label).join(', ')} {t('— verify before export', '— تحقق قبل التصدير')}
+                    ⚠ {lowConfFields.map(f => ar ? (f.labelAr ?? FIELD_LABEL_AR[f.label] ?? f.label) : f.label).join(', ')} {t('— verify before export', '— تحقق قبل التصدير')}
                   </p>
                 )}
               </div>

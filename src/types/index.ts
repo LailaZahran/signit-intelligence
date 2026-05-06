@@ -31,6 +31,7 @@ export type Currency = 'SAR' | 'USD';
 export interface Signal {
   color: SignalColor;
   label: string;
+  labelAr?: string;
 }
 
 export interface PersonaSummary {
@@ -44,6 +45,8 @@ export interface ExtractedField {
   value: string;
   confidence: number;
   riskLevel?: RiskLevel | 'ok';
+  labelAr?: string;
+  valueAr?: string;
 }
 
 export interface RiskFlag {
@@ -51,6 +54,8 @@ export interface RiskFlag {
   title: string;
   description: string;
   persona: PersonaId[];
+  titleAr?: string;
+  descriptionAr?: string;
 }
 
 export interface ContractSection {
@@ -60,6 +65,8 @@ export interface ContractSection {
   confidence: number;
   sourceClause: string;
   contractType?: ContractType[];
+  titleAr?: string;
+  contentAr?: string;
 }
 
 export interface Contract {
@@ -85,10 +92,12 @@ export interface Contract {
   governingLaw: string;
   signals: Signal[];
   aiSummary: PersonaSummary;
+  aiSummaryAr?: PersonaSummary;
   extractedFields: ExtractedField[];
   riskFlags: RiskFlag[];
   sections: ContractSection[];
   negotiationAngles: string[];
+  negotiationAnglesAr?: string[];
 }
 
 export interface BriefingLine {
