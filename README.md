@@ -8,7 +8,7 @@ Post-signature contract intelligence platform for holding companies and enterpri
 
 ## Live Demo
 
-> Deploy URL goes here (Vercel)
+> https://signit-intelligence.vercel.app
 
 To run locally:
 
