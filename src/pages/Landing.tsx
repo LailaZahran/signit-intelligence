@@ -6,6 +6,7 @@ import { AR_PERSONAS, AR_UI, EN_UI } from '@/data/ar';
 import { ChromeBar } from '@/components/layout/ChromeBar';
 import { TimelineStrip } from '@/components/landing/TimelineStrip';
 import { contracts } from '@/data/contracts';
+import { interpretQuery } from '@/utils/queryInterpreter';
 import {
   GitMerge, ShieldAlert, Lock, Columns2, FileDown, Flag,
   RefreshCw, Clock, DoorOpen, Upload,
@@ -54,9 +55,14 @@ export default function Landing() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
+  const interpreted = useMemo(() => interpretQuery(cmdQuery), [cmdQuery]);
+
   const suggestions = useMemo(() => {
     const q = cmdQuery.trim().toLowerCase();
     if (!q) return [];
+    if (interpreted) {
+      return contracts.filter(interpreted.filter).slice(0, 6);
+    }
     return contracts
       .filter((c) =>
         c.counterparty.toLowerCase().includes(q) ||
@@ -71,7 +77,7 @@ export default function Landing() {
         c.riskFlags.some((f) => f.title.toLowerCase().includes(q))
       )
       .slice(0, 6);
-  }, [cmdQuery]);
+  }, [cmdQuery, interpreted]);
 
   const ui = ar ? AR_UI : EN_UI;
   const arData = AR_PERSONAS[activePersona.id];
@@ -155,6 +161,15 @@ export default function Landing() {
                   className="absolute left-0 right-0 top-[58px] rounded-xl border border-gray-200 bg-white overflow-hidden z-50"
                   style={{ boxShadow: 'var(--shadow-xl)' }}
                 >
+                  {/* Intent label — shown when query was interpreted */}
+                  {interpreted && (
+                    <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-100" style={{ background: 'var(--brand-indigo-pale)' }}>
+                      <Search size={11} style={{ color: 'var(--brand-indigo)' }} />
+                      <p className="text-[11px] font-semibold" style={{ color: 'var(--brand-indigo)' }}>
+                        {ar ? interpreted.labelAr : interpreted.label}
+                      </p>
+                    </div>
+                  )}
                   {suggestions.map((c) => {
                     const badge = RISK_BADGE[c.riskLevel];
                     const label = ar && c.counterpartyAr ? c.counterpartyAr : c.counterparty;

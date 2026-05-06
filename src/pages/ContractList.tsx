@@ -7,6 +7,7 @@ import { contracts } from '@/data/contracts';
 import { usePersona } from '@/context/PersonaContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Contract, PersonaId } from '@/types';
+import { interpretQuery } from '@/utils/queryInterpreter';
 import { Search, SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import { CompareModal } from '@/components/contracts/CompareModal';
 
@@ -108,22 +109,27 @@ export default function ContractList() {
 
   const filtered = useMemo(() => {
     let list = contracts;
-    // Text search
+    // Natural language or text search
     if (query.trim()) {
-      const q = query.toLowerCase();
-      list = list.filter(
-        (c) =>
-          c.counterparty.toLowerCase().includes(q) ||
-          (c.counterpartyAr ?? '').includes(query.trim()) ||
-          c.title.toLowerCase().includes(q) ||
-          (c.titleAr ?? '').includes(query.trim()) ||
-          c.contractNumber.toLowerCase().includes(q) ||
-          c.type.toLowerCase().includes(q) ||
-          c.riskLevel.toLowerCase().includes(q) ||
-          c.status.toLowerCase().includes(q) ||
-          c.signals.some((s) => s.label.toLowerCase().includes(q)) ||
-          c.riskFlags.some((f) => f.title.toLowerCase().includes(q))
-      );
+      const interpreted = interpretQuery(query);
+      if (interpreted) {
+        list = list.filter(interpreted.filter);
+      } else {
+        const q = query.toLowerCase();
+        list = list.filter(
+          (c) =>
+            c.counterparty.toLowerCase().includes(q) ||
+            (c.counterpartyAr ?? '').includes(query.trim()) ||
+            c.title.toLowerCase().includes(q) ||
+            (c.titleAr ?? '').includes(query.trim()) ||
+            c.contractNumber.toLowerCase().includes(q) ||
+            c.type.toLowerCase().includes(q) ||
+            c.riskLevel.toLowerCase().includes(q) ||
+            c.status.toLowerCase().includes(q) ||
+            c.signals.some((s) => s.label.toLowerCase().includes(q)) ||
+            c.riskFlags.some((f) => f.title.toLowerCase().includes(q))
+        );
+      }
     }
     list = applyFilter(list, filter);
     return applySort(list, sort);
