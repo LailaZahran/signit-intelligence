@@ -118,7 +118,11 @@ export default function ContractList() {
           c.title.toLowerCase().includes(q) ||
           (c.titleAr ?? '').includes(query.trim()) ||
           c.contractNumber.toLowerCase().includes(q) ||
-          c.type.toLowerCase().includes(q)
+          c.type.toLowerCase().includes(q) ||
+          c.riskLevel.toLowerCase().includes(q) ||
+          c.status.toLowerCase().includes(q) ||
+          c.signals.some((s) => s.label.toLowerCase().includes(q)) ||
+          c.riskFlags.some((f) => f.title.toLowerCase().includes(q))
       );
     }
     list = applyFilter(list, filter);
